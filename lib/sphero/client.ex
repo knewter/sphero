@@ -6,17 +6,20 @@ defmodule Sphero.Client do
 
   defcall ping, state: state do
     # send the command
-    :ok = :serctl.write(state.device, message(state, @ping_message))
+    state.device <- {:send, message(state, @ping_message)}
     # receive 5 integers
-    response = :serctl.read(state.device, 5)
+    #response = receive do
+  #  {:data, data} -> IO.inspect data
+#  end
+    #:serctl.read(state.device, 5)
     # update the seq
-    state.update_seq(state.seq + 1)
+    state = state.seq(state.seq + 1)
+    new_state(state)
   end
 
   definit device do
-    {:ok, fd} = :serctl.open(bitstring_to_list(device))
-    IO.inspect fd
-    Sphero.Client.State.new(device: fd, seq: 0)
+    device = :serial.start([speed: 115200, open: bitstring_to_list(device)])
+    Sphero.Client.State.new(device: device, seq: 0)
   end
 
   defp message(state, message) do

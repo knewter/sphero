@@ -21,7 +21,7 @@ defmodule Sphero.Mixfile do
   defp deps do
     [
       {:exactor, github: "sasa1977/exactor"},
-      {:srly, github: "msantos/srly"}
+      {:"erlang-serial", github: "knewter/erlang-serial"}
     ]
   end
 end

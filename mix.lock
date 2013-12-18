@@ -1,5 +1,2 @@
-[ "erlang-serial": {:git, "git://github.com/tonyg/erlang-serial.git", "d5c02a559c3ff88201b9429c0d3017f8b5a68060", []},
-  "erlang_serial": {:git, "git://github.com/tonyg/erlang-serial.git", "d5c02a559c3ff88201b9429c0d3017f8b5a68060", []},
-  "erlangserial": {:git, "git://github.com/tonyg/erlang-serial.git", "d5c02a559c3ff88201b9429c0d3017f8b5a68060", []},
-  "exactor": {:git, "git://github.com/sasa1977/exactor.git", "573baa559d074375900e686fc921c86fb60b1ff1", []},
-  "srly": {:git, "git://github.com/msantos/srly.git", "027676a45641b370799b518c648f8b37d4a8d5ec", []} ]
+[ "erlang-serial": {:git, "git://github.com/knewter/erlang-serial.git", "61821783259551090af7a8561891a345c0547af2", []},
+  "exactor": {:git, "git://github.com/sasa1977/exactor.git", "573baa559d074375900e686fc921c86fb60b1ff1", []} ]
