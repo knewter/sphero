@@ -8,13 +8,12 @@ defmodule Sphero.Client do
     # send the command
     state.device <- {:send, message(state, @ping_message)}
     # receive 5 integers
-    #response = receive do
-  #  {:data, data} -> IO.inspect data
-#  end
-    #:serctl.read(state.device, 5)
+    response = receive do
+      {:data, data} -> IO.inspect data
+    end
     # update the seq
     state = state.seq(state.seq + 1)
-    new_state(state)
+    set_and_reply(state, :ok)
   end
 
   definit device do
