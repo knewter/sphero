@@ -1,6 +1,8 @@
 # Sphero
 
-A library for interacting with a Sphero device that's connected via bluetooth.
+(Eventually) A library for interacting with a Sphero device that's connected via bluetooth.
+
+(Presently) work towards said library :)
 
 ## Usage
 
