@@ -7,7 +7,7 @@ defmodule Sphero.Client do
   defcall ping, state: state do
     # send the command
     state.device <- {:send, message(state, @ping_message)}
-    # receive 5 integers
+    # receive 5 integers FIXME: Only doing 1 right now
     response = receive do
       {:data, data} -> IO.inspect data
     end
@@ -22,6 +22,7 @@ defmodule Sphero.Client do
   end
 
   defp message(state, message) do
+    IO.inspect state.seq
     :erlang.iolist_to_binary([message, state.seq])
   end
 end
