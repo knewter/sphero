@@ -57,24 +57,24 @@ defmodule Sphero.Request.GetVersioning do
 end
 
 defmodule Sphero.Request.GetBluetoothInfo do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<11>>
+  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<17>>
 end
 
 defmodule Sphero.Request.SetAutoReconnect do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<12>>
+  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<18>>
 end
 
 defmodule Sphero.Request.GetAutoReconnect do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<13>>
+  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<19>>
 end
 
 defmodule Sphero.Request.GetPowerState do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<20>>
+  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<32>>
 end
 
 defmodule Sphero.Request.Sleep do
   def new([seq: seq, wakeup: wakeup, macro: macro]) do
     # Convert wakeup to an unsigned 16-bit packed integer
-    Sphero.Request.new seq: seq, data: <<macro, wakeup :: [unsigned, size(16)]>>
+    Sphero.Request.new seq: seq, data: <<macro, wakeup :: [unsigned, size(16)]>>, cid: <<34>>
   end
 end

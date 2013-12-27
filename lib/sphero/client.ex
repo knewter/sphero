@@ -4,14 +4,20 @@ defmodule Sphero.Client do
   use ExActor
 
   defcall ping, state: state do
-    # send the command
     do_request(Sphero.Request.Ping.new(seq: state.seq), state)
   end
 
   defcall set_rgb(red, green, blue), state: state do
-    # send the command
     persistent = 0
     do_request(Sphero.Command.SetRGB.new(seq: state.seq, data: <<red, green, blue, persistent>>), state)
+  end
+
+  defcall roll(speed, heading), state: state do
+    do_request(Sphero.Command.Roll.new(seq: state.seq, speed: speed, heading: heading, delay: 1), state)
+  end
+
+  defcall stop, state: state do
+    do_request(Sphero.Command.Roll.new(seq: state.seq, speed: 0, heading: 0, delay: 1), state)
   end
 
   definit device do
