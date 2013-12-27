@@ -1,8 +1,6 @@
 # Sphero
 
-(Eventually) A library for interacting with a Sphero device that's connected via bluetooth.
-
-(Presently) work towards said library :)
+An Elixir library for interacting with a Sphero device that's connected via bluetooth.  Brought to you by Josh Adams, purveyor of [Elixir Sips](http://elixirsips.com).
 
 ## Usage
 
@@ -37,4 +35,4 @@ socat:
 socat -d -d -u pty,raw,echo=0,nonblock=1 OPEN:/tmp/foo.data,create,append    
 ```
 
-Now any bytes written into that socket will end up in the new file
+Now any bytes written into that socket will end up in the new file.
