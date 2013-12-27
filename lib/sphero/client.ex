@@ -2,18 +2,16 @@ defrecord Sphero.Client.State, device: nil, seq: nil
 
 defmodule Sphero.Client do
   use ExActor
-  @ping_message 1
 
   defcall ping, state: state do
     # send the command
-    state.device <- {:send, message(state, @ping_message)}
-    # receive 5 integers FIXME: Only doing 1 right now
-    response = receive do
-      {:data, data} -> IO.inspect data
-    end
-    # update the seq
-    state = state.seq(state.seq + 1)
-    set_and_reply(state, :ok)
+    do_request(Sphero.Request.Ping.new(seq: state.seq), state)
+  end
+
+  defcall set_rgb(red, green, blue), state: state do
+    # send the command
+    persistent = 0
+    do_request(Sphero.Command.SetRGB.new(seq: state.seq, data: <<red, green, blue, persistent>>), state)
   end
 
   definit device do
@@ -21,8 +19,16 @@ defmodule Sphero.Client do
     Sphero.Client.State.new(device: device, seq: 0)
   end
 
-  defp message(state, message) do
-    IO.inspect state.seq
-    :erlang.iolist_to_binary([message, state.seq])
+  defp do_request(request, state) do
+    request_bytes = Sphero.Request.to_string(request)
+    IO.inspect request_bytes
+    state.device <- {:send, request_bytes}
+    # receive 5 integers FIXME: Only doing 1 right now
+    response = receive do
+      {:data, data} -> IO.inspect data
+    end
+    # update the seq
+    state = state.seq(state.seq + 1)
+    set_and_reply(state, :ok)
   end
 end

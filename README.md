@@ -27,3 +27,14 @@ screen /dev/pts/7 115200,8,N,1
 
 And open the other with the sphero client.  Send it commands.  See them come
 through...
+
+## Debugging
+
+To see what's being written to a given socket, you can do the following with
+socat:
+
+```sh
+socat -d -d -u pty,raw,echo=0,nonblock=1 OPEN:/tmp/foo.data,create,append    
+```
+
+Now any bytes written into that socket will end up in the new file
