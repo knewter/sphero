@@ -2,7 +2,7 @@
 
 An Elixir library for interacting with a Sphero device that's connected via bluetooth.  Brought to you by Josh Adams, purveyor of [Elixir Sips](http://elixirsips.com).
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/nwHjJgBTsV8" frameborder="0" allowfullscreen></iframe>
+[![YouTube video](web/youtube_screenshot.png)](http://www.youtube.com/watch?v=nwHjJgBTsV8)
 
 ## Usage
 
