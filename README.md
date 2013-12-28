@@ -2,6 +2,8 @@
 
 An Elixir library for interacting with a Sphero device that's connected via bluetooth.  Brought to you by Josh Adams, purveyor of [Elixir Sips](http://elixirsips.com).
 
+<iframe width="560" height="315" src="//www.youtube.com/embed/nwHjJgBTsV8" frameborder="0" allowfullscreen></iframe>
+
 ## Usage
 
 ```elixir
@@ -36,3 +38,9 @@ socat -d -d -u pty,raw,echo=0,nonblock=1 OPEN:/tmp/foo.data,create,append
 ```
 
 Now any bytes written into that socket will end up in the new file.
+
+## TODO
+
+I don't yet parse any of the messages coming FROM the sphero, but that's not
+relevant to my Erlang Factory 2014 talk, so it won't come for a bit :)  Pull
+Requests welcome :)
