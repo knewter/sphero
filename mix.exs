@@ -4,7 +4,6 @@ defmodule Sphero.Mixfile do
   def project do
     [ app: :sphero,
       version: "0.0.1",
-      elixir: "~> 0.11.3-dev",
       deps: deps ]
   end
 
