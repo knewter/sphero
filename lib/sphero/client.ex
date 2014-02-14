@@ -1,7 +1,7 @@
 defrecord Sphero.Client.State, device: nil, seq: nil
 
 defmodule Sphero.Client do
-  use ExActor
+  use ExActor.GenServer
 
   defcall ping, state: state do
     do_request(Sphero.Request.Ping.new(seq: state.seq), state)
@@ -22,13 +22,13 @@ defmodule Sphero.Client do
 
   definit device do
     device = :serial.start([speed: 115200, open: bitstring_to_list(device)])
-    Sphero.Client.State.new(device: device, seq: 0)
+    initial_state(Sphero.Client.State.new(device: device, seq: 0))
   end
 
   defp do_request(request, state) do
     request_bytes = Sphero.Request.to_string(request)
     IO.inspect request_bytes
-    state.device <- {:send, request_bytes}
+    send(state.device, {:send, request_bytes})
     # receive 5 integers FIXME: Only doing 1 right now
     response = receive do
       {:data, data} -> IO.inspect data
