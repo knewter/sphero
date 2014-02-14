@@ -3,7 +3,8 @@ defmodule Examples.Basic do
 
   def start(device) do
     {:ok, s} = C.start(device)
-    rotate_through(s, 20)
+    :timer.sleep(3000)
+    rotate_through(s, 200)
   end
 
   defp values do
@@ -13,7 +14,7 @@ defmodule Examples.Basic do
   defp rotate_through(pid, n) do
     [red, green, blue] = values |> Enum.take(3)
     pid |> C.set_rgb(red, green, blue)
-    :erlang.sleep(100)
+    :timer.sleep(100)
     rotate_through(pid, n-1)
   end
 end
