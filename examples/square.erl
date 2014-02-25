@@ -8,7 +8,7 @@ roll(Device) ->
   roll_and_sleep(S, 90),
   roll_and_sleep(S, 180),
   roll_and_sleep(S, 270),
-  'Elixir.Sphero:Client':stop(s),
+  'Elixir.Sphero.Client':stop(S),
   exit(S, kill).
 
 roll_and_sleep(S, Angle) ->
