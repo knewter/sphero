@@ -30,8 +30,10 @@ defmodule Sphero.Client do
     IO.inspect request_bytes
     send(state.device, {:send, request_bytes})
     # receive 5 integers FIXME: Only doing 1 right now
-    response = receive do
+    _response = receive do
       {:data, data} -> IO.inspect data
+    after
+      1 -> :timeout
     end
     # update the seq
     state = state.seq(state.seq + 1)
