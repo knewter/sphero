@@ -2,19 +2,7 @@ defrecord Sphero.Request, seq: nil, data: "", did: <<0>>, cid: <<0>> do
   use Bitwise, only_operators: true
 
   def to_string(request) do
-    bytes(request)
-  end
-
-  defp bytes(request) do
     packet_header(request) <> packet_body(request) <> checksum(request)
-  end
-
-  defp packet_header(request) do
-    header(request)
-  end
-
-  defp packet_body(request) do
-    request.data
   end
 
   defp checksum(request) do
@@ -27,10 +15,6 @@ defrecord Sphero.Request, seq: nil, data: "", did: <<0>>, cid: <<0>> do
     <<csumval>>
   end
 
-  defp sum(list), do: sum(list, 0)
-  defp sum([head|rest], accum), do: sum(rest, accum + head)
-  defp sum([], accum), do: accum
-
   defp header(request) do
     sop1 <>
     sop2 <>
@@ -39,6 +23,15 @@ defrecord Sphero.Request, seq: nil, data: "", did: <<0>>, cid: <<0>> do
     <<request.seq>> <>
     :erlang.list_to_binary([dlen(request.data)])
   end
+
+
+  defp sum(list), do: sum(list, 0)
+  defp sum([head|rest], accum), do: sum(rest, accum + head)
+  defp sum([], accum), do: accum
+
+  defp packet_header(request), do: header(request)
+
+  defp packet_body(request), do: request.data
 
   defp sop1, do: <<255>>
   defp sop2, do: <<255>>

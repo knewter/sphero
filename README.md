@@ -11,6 +11,12 @@ An Elixir library for interacting with a Sphero device that's connected via blue
 Sphero.Client.ping(s) #=> Sends an 0x01 0x00
 ```
 
+Or to see an example:
+
+```sh
+mix run examples/square.exs
+```
+
 ## Development
 
 To get some sockets to play with without worrying about the sphero, use socat:
