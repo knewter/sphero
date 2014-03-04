@@ -3,7 +3,7 @@ defmodule Examples.Square do
   def roll device do
     {:ok, s} = C.start device
     :timer.sleep 4000
-    Enum.map 1..5, &roll_square/1
+    Enum.map 1..5, fn(_) -> roll_square(s) end
     C.stop s
     Process.exit s, :kill
   end
