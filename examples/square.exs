@@ -3,15 +3,12 @@ defmodule Examples.Square do
   def roll device do
     {:ok, s} = C.start device
     :timer.sleep 4000
-    Enum.map 1..5, fn(_) -> roll_square(s) end
+    for _ <- 1..5, do: roll_square(s)
     C.stop s
     Process.exit s, :kill
   end
   def roll_square s do
-    roll_and_sleep s, 0
-    roll_and_sleep s, 90
-    roll_and_sleep s, 180
-    roll_and_sleep s, 270
+    for x <- [0, 90, 180, 270], do: roll_and_sleep(s, x)
   end
   def roll_and_sleep s, angle do
     C.roll s, 80, angle
