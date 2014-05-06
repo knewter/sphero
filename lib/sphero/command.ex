@@ -1,6 +1,6 @@
 defmodule Sphero.Command do
   def new([seq: seq, data: data, cid: cid]) do
-    Sphero.Request.new(seq: seq, data: data, cid: cid, did: <<2>>)
+    %Sphero.Request{seq: seq, data: data, cid: cid, did: <<2>>}
   end
 end
 

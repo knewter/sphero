@@ -1,6 +1,8 @@
-defrecord Sphero.Client.State, device: nil, seq: nil
-
 defmodule Sphero.Client do
+  defmodule State do
+    defstruct [:device, :seq]
+  end
+
   use ExActor.GenServer
 
   defcall ping, state: state do
@@ -22,7 +24,7 @@ defmodule Sphero.Client do
 
   definit device do
     device = :serial.start([speed: 115200, open: bitstring_to_list(device)])
-    initial_state(Sphero.Client.State.new(device: device, seq: 0))
+    initial_state(%State{device: device, seq: 0})
   end
 
   defp do_request(request, state) do

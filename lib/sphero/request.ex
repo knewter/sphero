@@ -1,4 +1,8 @@
-defrecord Sphero.Request, seq: nil, data: "", did: <<0>>, cid: <<0>> do
+defmodule Sphero.Request do
+  defstruct [seq: nil,
+             data: "",
+             did: <<0>>,
+             cid: <<0>>]
   use Bitwise, only_operators: true
 
   def to_string(request) do
@@ -42,32 +46,32 @@ defrecord Sphero.Request, seq: nil, data: "", did: <<0>>, cid: <<0>> do
 end
 
 defmodule Sphero.Request.Ping do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<1>>
+  def new([seq: seq]), do: %Sphero.Request{seq: seq, cid: <<1>>}
 end
 
 defmodule Sphero.Request.GetVersioning do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<2>>
+  def new([seq: seq]), do: %Sphero.Request{seq: seq, cid: <<2>>}
 end
 
 defmodule Sphero.Request.GetBluetoothInfo do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<17>>
+  def new([seq: seq]), do: %Sphero.Request{seq: seq, cid: <<17>>}
 end
 
 defmodule Sphero.Request.SetAutoReconnect do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<18>>
+  def new([seq: seq]), do: %Sphero.Request{seq: seq, cid: <<18>>}
 end
 
 defmodule Sphero.Request.GetAutoReconnect do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<19>>
+  def new([seq: seq]), do: %Sphero.Request{seq: seq, cid: <<19>>}
 end
 
 defmodule Sphero.Request.GetPowerState do
-  def new([seq: seq]), do: Sphero.Request.new seq: seq, cid: <<32>>
+  def new([seq: seq]), do: %Sphero.Request{seq: seq, cid: <<32>>}
 end
 
 defmodule Sphero.Request.Sleep do
   def new([seq: seq, wakeup: wakeup, macro: macro]) do
     # Convert wakeup to an unsigned 16-bit packed integer
-    Sphero.Request.new seq: seq, data: <<macro, wakeup :: [unsigned, size(16)]>>, cid: <<34>>
+    %Sphero.Request{seq: seq, data: <<macro, wakeup :: [unsigned, size(16)]>>, cid: <<34>>}
   end
 end
