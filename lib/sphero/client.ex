@@ -22,7 +22,7 @@ defmodule Sphero.Client do
     do_request(Sphero.Command.Roll.new(seq: state.seq, speed: 0, heading: 0, delay: 1), state)
   end
 
-  definit device do
+  defstart start(device) do
     device = :serial.start([speed: 115200, open: :erlang.bitstring_to_list(device)])
     initial_state(%State{device: device, seq: 0})
   end

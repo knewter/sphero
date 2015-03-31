@@ -1,2 +1,2 @@
 %{"erlang-serial": {:git, "git://github.com/knewter/erlang-serial.git", "61821783259551090af7a8561891a345c0547af2", []},
-  "exactor": {:git, "git://github.com/sasa1977/exactor.git", "4581a21deafc5eaab7a9551c44facc8c8db25a97", []}}
+  "exactor": {:git, "git://github.com/sasa1977/exactor.git", "f14390f3d11fc70025a0c986a75585480f2daacd", []}}
