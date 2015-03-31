@@ -38,7 +38,7 @@ defmodule Sphero.Client do
       1 -> :timeout
     end
     # update the seq
-    state = state.seq(state.seq + 1)
+    state = %State{state | seq: state.seq + 1}
     set_and_reply(state, :ok)
   end
 end
