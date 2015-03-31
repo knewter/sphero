@@ -72,6 +72,6 @@ end
 defmodule Sphero.Request.Sleep do
   def new([seq: seq, wakeup: wakeup, macro: macro]) do
     # Convert wakeup to an unsigned 16-bit packed integer
-    %Sphero.Request{seq: seq, data: <<macro, wakeup :: [unsigned, size(16)]>>, cid: <<34>>}
+    %Sphero.Request{seq: seq, data: <<macro, wakeup :: unsigned-size(16)>>, cid: <<34>>}
   end
 end
